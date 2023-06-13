@@ -2,11 +2,15 @@ AllCops:
   NewCops: enable
   Exclude:
     - "db/**/*"
-    - "bin/*" 
+    - "bin/*"
     - "config/**/*"
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
+    - "Gemfile"
+    - "mailers/**/*"
+    - "config.ru"
+    - "test/**/*"
 
   DisplayCopNames: true
 
@@ -27,7 +31,6 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   AllowedMethods: ['describe']
   Max: 30
-
 Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
@@ -40,7 +43,6 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
-
 Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
