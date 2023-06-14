@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<img align="center" src="logo.png" alt="logo" />
+<p align="center"><img src="logo.png" alt="logo" /></p>
 
 # 📗 Table of Contents
 
