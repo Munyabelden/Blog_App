@@ -1,5 +1,7 @@
 <a name="readme-top"></a>
 
+<img align="center" src="logo.png" alt="logo" />
+
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
