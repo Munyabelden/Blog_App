@@ -1,10 +1,9 @@
-class Like < ApplicationRecord
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
-  belongs_to :post, class_name: 'Post', foreign_key: 'post_id'
-  
-  after_save :update_likes_counter
-
-  def update_likes_counter
-    post.increment!(:likes_counter)
+class CreateLikes < ActiveRecord::Migration[7.0]
+  def change
+    create_table :likes do |t|
+      t.references :author, foreign_key: { to_table: :users }
+      t.references :post, foreign_key: { to_table: :posts }
+      t.timestamps
+    end
   end
 end

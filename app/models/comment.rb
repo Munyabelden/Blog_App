@@ -4,10 +4,10 @@ class Comment < ApplicationRecord
 
   validates :text, presence: true
 
-  after_save :upadate_comments_counter
+  after_save :update_comments_counter
 
-  def upadate_comments_counter
-    posts.increment!(:comments_counter)
+  def update_comments_counter
+    post.update(comments_counter: post.comments.count)
   end
 end
   
