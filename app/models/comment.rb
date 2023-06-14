@@ -10,4 +10,3 @@ class Comment < ApplicationRecord
     post.update(comments_counter: post.comments.count)
   end
 end
-  
