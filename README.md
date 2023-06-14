@@ -8,7 +8,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -55,12 +54,6 @@
 - **[User Registration: Users can create accounts to access the application and personalize their profile]**
 - **[Blog Post Creation: Users can write and publish blog posts, including a title and text content.]**
 - **[User Profile: Users can update their profile information, including their name, photo, and bio.]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- There is no live demo available yet
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
