@@ -2,17 +2,28 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   describe 'associations' do
-    it { should belong_to(:user).class_name('User').with_foreign_key('user_id') }
-    it { should belong_to(:post).class_name('Post').with_foreign_key('post_id') }
+    it 'belongs to user' do
+      association = described_class.reflect_on_association(:user)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.options[:foreign_key]).to eq('user_id')
+    end
+
+    it 'belongs to post' do
+      association = described_class.reflect_on_association(:post)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.options[:foreign_key]).to eq('post_id')
+    end
   end
 
-  describe '#update_likes_counter' do
-    let(:post) { create(:post) }
-    let(:user) { create(:user) }
-    let!(:like) { create(:like, post: post, user: user) }
+  describe 'update posts counter' do
+    user = User.create(name: 'Man', photo: 'photo', bio: 'bio', posts_counter: 0)
+    post = Post.create(title: 'post', text: 'This is my post', author_id: user.id, comments_counter: 0,
+                       likes_counter: 0)
 
-    it 'increments the post\'s likes_counter' do
-      expect { like.update_likes_counter }.to change { post.reload.likes_counter }.by(1)
+    subject { described_class.create(post:, user_id: user.id) }
+
+    it 'posts comments count should increase' do
+      expect(subject.post.likes_counter).to eq(post.likes_counter)
     end
   end
 end

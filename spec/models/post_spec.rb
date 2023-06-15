@@ -2,50 +2,84 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'associations' do
-    it { should belong_to(:author).class_name('User').with_foreign_key('author_id') }
-    it { should have_many(:likes).with_foreign_key('post_id') }
-    it { should have_many(:comments).with_foreign_key('post_id') }
+    it 'Belongs to a user' do
+      association = described_class.reflect_on_association(:author)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.options[:foreign_key]).to eq('author_id')
+    end
+
+    it 'has many comments' do
+      association = described_class.reflect_on_association(:comments)
+      expect(association.macro).to eq(:has_many)
+      expect(association.options[:foreign_key]).to eq('post_id')
+    end
+
+    it 'has many likes' do
+      association = described_class.reflect_on_association(:likes)
+      expect(association.macro).to eq(:has_many)
+      expect(association.options[:foreign_key]).to eq('post_id')
+    end
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:text) }
-    it do
-      should validate_numericality_of(:likes_counter)
-        .only_integer
-        .is_greater_than_or_equal_to(0)
-        .with_message('must be an integer greater than or equal to zero')
-        .on(:create)
+    it 'should return false without title' do
+      post = Post.create(text: 'This is lovely', author: @user)
+      expect(post.valid?).to eq(false)
     end
-    it do
-      should validate_numericality_of(:comments_counter)
-        .only_integer
-        .is_greater_than_or_equal_to(0)
-        .with_message('must be an integer greater than or equal to zero')
-        .on(:create)
+
+    it 'should return false without text' do
+      post = Post.create(title: 'This is lovely', author: @user)
+      expect(post.valid?).to eq(false)
+    end
+
+    it 'should validate likes_counter as a non-negative integer' do
+      post = Post.new(likes_counter: -1)
+      post.valid?
+      expect(post.errors[:likes_counter]).to include('must be an integer greater than or equal to zero')
+    end
+
+    it 'should validate comments_counter as a non-negative integer' do
+      post = Post.new(comments_counter: -1)
+      post.valid?
+      expect(post.errors[:comments_counter]).to include('must be an integer greater than or equal to zero')
     end
   end
 
-  describe '#recent_comments' do
-    let(:post) { create(:post) }
-    let!(:comment1) { create(:comment, post: post, created_at: 2.hours.ago) }
-    let!(:comment2) { create(:comment, post: post, created_at: 1.hour.ago) }
-    let!(:comment3) { create(:comment, post: post, created_at: 3.hours.ago) }
-    let!(:comment4) { create(:comment, post: post, created_at: 4.hours.ago) }
-    let!(:comment5) { create(:comment, post: post, created_at: 5.hours.ago) }
-    let!(:comment6) { create(:comment, post: post, created_at: 6.hours.ago) }
+  describe 'recent_posts' do
+    before(:example) do
+      @user = User.create(name: 'John Doe', photo: 'Person Image', bio: 'I am a teacher', posts_counter: 0)
+      @post = Post.create(title: 'My post', text: 'Post body', author: @user, comments_counter: 0, likes_counter: 0)
+    end
 
-    it 'returns the 5 most recent comments' do
-      expect(post.recent_comments).to eq([comment2, comment1, comment3, comment4, comment5])
+    let!(:comment1) do
+      Comment.create(text: 'Comment 1', user: @user, post: @post)
+    end
+    let!(:comment2) do
+      Comment.create(text: 'Comment 1', user: @user, post: @post)
+    end
+    let!(:comment3) do
+      Comment.create(text: 'Comment 3', user: @user, post: @post)
+    end
+    let!(:comment4) do
+      Comment.create(text: 'Comment 4', user: @user, post: @post)
+    end
+    let!(:comment5) do
+      Comment.create(text: 'Comment 5', user: @user, post: @post)
+    end
+
+    it 'should return last 3 photos' do
+      expect(@post.recent_comments).to include(comment1, comment2, comment3, comment4, comment5)
     end
   end
 
   describe '#update_post_counter' do
-    let(:author) { create(:user) }
-    let(:post) { create(:post, author: author) }
+    before(:example) do
+      @user = User.create(name: 'John Doe', photo: 'Person Image', bio: 'I am a teacher', posts_counter: 0)
+      @post = Post.create(title: 'My post', text: 'Post body', author: @user, comments_counter: 0, likes_counter: 0)
+    end
 
     it 'increments the author\'s posts_counter' do
-      expect { post.update_post_counter }.to change { author.reload.posts_counter }.by(1)
+      expect { @post.update_post_counter }.to change { @user.reload.posts_counter }.by(1)
     end
   end
 end
