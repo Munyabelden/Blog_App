@@ -1,7 +1,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 ruby "3.2.2"
+
 gem "pg"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -52,6 +57,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails'
 end
 
 group :development do
