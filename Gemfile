@@ -5,6 +5,8 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+gem 'rails-controller-testing'
+
 ruby "3.2.2"
 
 gem "pg"
