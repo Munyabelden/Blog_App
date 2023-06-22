@@ -1,1 +1,21 @@
-<h1>Posts for a given user ID</h1>
+<section>
+  <div>
+    <div>
+      <h2><%= @post.title %> by <%= @post.author.name %></h2>
+      <div class="user-count">
+        <span>Comments: <%= @post.comments_counter %></span>
+        <span>Likes: <%= @post.likes_counter %></span>
+      </div>
+    </div>
+    <p><%= @post.text %></p>
+  </div>
+
+  <div>
+    <h3>Comments:</h3>
+    <ul>
+      <% @post.comments.each do |comment| %>
+        <li><strong><%= comment.user.name %></strong>: <%= comment.text %></li>
+      <% end %>
+    </ul>
+  </div>
+</section>

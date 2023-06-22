@@ -10,7 +10,8 @@
   </div>
   <div>
     <% @posts.each do |post| %>
-      <a href="<%= @user.id%>/posts/<%= post.id%>">
+      <a href="<%= post.id%>">
+        <h3><%= post.title %></h3>
         <p><%= post.text.split[0..30].join(' ') %>....</p>
         <div class="user-count">
           <span>Comments: <%= post.comments_counter %></span>
@@ -20,7 +21,7 @@
       <ul>
         <% post.recent_comments.each do |comment| %>
           <li>
-            <%= comment.text %>
+            <strong><%= comment.user.name %></strong>:<%= comment.text %>
           </li>
         <% end %>
       </ul>
