@@ -26,7 +26,6 @@ li {
 .user div {
   width: 200px;
   min-height: 200px;
-  height: fit-content;
   overflow: hidden;
 }
 
