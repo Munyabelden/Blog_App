@@ -78,7 +78,6 @@ li {
 
 .user-bio {
   margin: 30px 75px;
-  border: 1.5px solid #3f414b;
   padding: 30px 15px;
 }
 
@@ -98,8 +97,7 @@ li {
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  border: 1.5px solid #3f414b;
-  padding: 30px 15px;
+  padding: 15px;
   margin-block: 15px;
 }
 
@@ -143,4 +141,12 @@ li {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 30px auto;
 }

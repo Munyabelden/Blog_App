@@ -8,9 +8,9 @@
       <span>Number of posts: <%= @user.posts_counter %></span>
     </div>
   </div>
-  <div>
+  <div class="posts-list" style= " display: flex; flex-direction: column; justify-content: center; width: 100%; margin: 30px auto;">
     <% @posts.each do |post| %>
-      <a href="<%= post.id%>">
+      <a href="<%= post.id%>" style="c">
         <h3><%= post.title %></h3>
         <p><%= post.text.split[0..30].join(' ') %>....</p>
         <div class="user-count">
