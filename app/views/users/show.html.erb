@@ -1,1 +1,35 @@
-<h1>User with a given ID</h1>
+<section class="user-infor">
+  <div class="user">
+    <div>
+      <img src="<%= @user.photo %>" alt="Profile picture" />
+    </div>
+    <div class="user-details">
+      <h2><%= @user.name %></h2>
+      <span>Number of posts: <%= @user.posts_counter %></span>
+    </div>
+  </div>
+  <div class="user-bio">
+    <h3>Bio</h3>
+    <p><%= @user.bio %></p>
+  </div>
+  <ul class="user-posts">
+    <% @user.recent_posts.each do |post| %>
+      <li>
+        <h4><%= post.title %></h4>
+        <a href="<%= @user.id%>/posts/<%= post.id%>">
+          <p><%= post.text.split[0..30].join(' ') %>....</p>
+          <div class="user-count">
+            <span>Comments: <%= post.comments_counter %></span>
+            <span>Likes: <%= post.likes_counter %></span>
+          </div>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <a href="<%= @user.id%>/posts/" class="user-button">See all posts</a>
+</section>
+
+<%#INSERT INTO comments (user_id, post_id, text, created_at, updated_at)
+VALUES (6, 5, 'You should write a book or start podcast to teach young poeple on such things', current_timestamp, current_timestamp);
+
+ %>
