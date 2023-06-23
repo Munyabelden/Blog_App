@@ -113,7 +113,10 @@ li {
 }
 
 .user-button {
-  margin: 30px auto;
+  justify-self: center;
+  align-self: center;
+  margin-block: 30px;
+  margin-inline:  auto;
   background: #3f414b;
   color: rgb(201, 216, 245);
   border: 2px solid transparent;
@@ -148,4 +151,16 @@ li {
   justify-content: center;
   width: 100%;
   margin: 30px auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+input {
+  padding: 10px;
 }

@@ -15,10 +15,11 @@ class PostsController < ApplicationController
 
   def create
     @user = current_user
-    @post = @user.posts.new(post_params)
+    @post = Post.new(post_params)
+    @post.author_id = @user.id
   
     if @post.save
-      redirect_to user_posts_path(@user)
+      redirect_to user_posts_path(current_user)
     else
       render :new
     end
