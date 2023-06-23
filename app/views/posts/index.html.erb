@@ -12,7 +12,7 @@
     <% @posts.each do |post| %>
       <a href="<%= user_post_path(post.author, post) %>">
         <h3><%= post.title %></h3>
-        <p><%= truncate(post.text, length: 80) %></p>
+        <p><%= truncate(post.text, length: 180) %></p>
         <div class="user-count">
           <span>Comments: <%= post.comments.count %></span>
           <span>Likes: <%= post.likes.count %></span>
