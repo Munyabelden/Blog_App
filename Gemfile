@@ -5,6 +5,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :development do
+  gem 'web-console'
+end
+
 gem 'rails-controller-testing'
 
 ruby "3.2.2"
