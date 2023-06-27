@@ -1,13 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-group :development, :test do
-  gem 'rspec-rails'
-end
-
 group :development do
   gem 'web-console'
 end
+
+gem 'bullet', group: 'development'
 
 gem 'rails-controller-testing'
 

@@ -14,27 +14,27 @@ RSpec.describe 'Users', type: :request do
 
     it 'includes correct placeholder text in the response body' do
       get users_path
-      expect(response.body).to include('<h1>List of all the users</h1>')
+      expect(response.body).to include('<span>Number of posts: 1</span>')
     end
   end
 
   describe 'GET #show' do
     it 'returns http success' do
-      user = User.create(name: 'John', id: 1)
+      user = User.create(name: 'Thomas Heflord', id: 645)
       get user_path(user, user.id)
       expect(response).to have_http_status(:success)
     end
 
     it 'renders the correct template' do
-      user = User.create(name: 'John', id: 1)
+      user = User.create(name: 'Thomas Heflord', id: 645)
       get user_path(user, user.id)
       expect(response).to render_template(:show)
     end
 
     it 'should include correct placeholder' do
-      user = User.create(name: 'John', id: 1)
+      user = User.create(name: 'Thomas Heflord', id: 645)
       get user_path(user, user.id)
-      expect(response.body).to include('<h1>User with a given ID</h1>')
+      expect(response.body).to include('<h2>Thomas Heflord</h2>')
     end
   end
 end
