@@ -1,9 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-group :development do
-  gem 'web-console'
-end
+gem 'devise'
 
 gem 'bullet', group: 'development'
 
