@@ -1,4 +1,3 @@
-<section>
 <h2>Resend confirmation instructions</h2>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
@@ -14,7 +13,4 @@
   </div>
 <% end %>
 
-<div class="shared">
-  <%= render "devise/shared/links" %>
-</div>
-</section>
+<%= render "devise/shared/links" %>
