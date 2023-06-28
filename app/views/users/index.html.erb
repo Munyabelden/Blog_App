@@ -1,6 +1,4 @@
 <div>
-  <h1 class='user-current'>Hello <%=current_user.name%></h1>
-  <div class='post-button'><%= link_to "Post", new_user_post_path(current_user, current_user.id), class: 'common-btn' %></div>
   <% @users.each do |user| %>
     <%= render partial: "users/user", locals: { user: user } %>
   <% end %>
