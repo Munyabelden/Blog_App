@@ -162,7 +162,8 @@ form {
   margin-block-start: 50px;
 }
 
-input {
+input,
+textarea {
   padding: 10px;
   width: 400px;
 }
@@ -175,4 +176,8 @@ input {
 .shared {
   text-align: center;
   margin: 19px auto;
+}
+
+.short-button {
+  width: fit-content;
 }

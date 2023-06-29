@@ -5,6 +5,13 @@
       <div class="user-count">
         <span>Comments: <%= @post.comments.count %></span>
         <span>Likes: <%= @post.likes.count %></span>
+        <div class="short-input">
+          <% if can? :destroy, @post%>
+            <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}" , method: :delete do |f|%>
+              <%= f.submit 'Delete Post', class: 'short-button' %>
+            <%end%>
+          <%end%>
+        </div>
       </div>
     </div>
     <p><%= @post.text %></p>
@@ -28,7 +35,14 @@
     <ul>
       <% @post.comments.each do |comment| %>
         <li>
-          <strong><%= comment.user.name %></strong>: <%= comment.text %>
+          <p><strong><%= comment.user.name %></strong>: <%= comment.text %></p>
+          <div class="short-input">
+            <% if can? :destroy, comment%>
+              <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/comments/#{comment.id}" , method: :delete do |f|%>
+                 <%= f.submit 'Delete Comment', class: 'short-button' %>
+              <%end%>
+            <%end%>
+          </div>
         </li>
       <% end %>
     </ul>
