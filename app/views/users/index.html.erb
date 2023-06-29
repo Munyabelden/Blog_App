@@ -1,3 +1,5 @@
+<h1 class='user-wel'>Welcome <%=@current_user.name%></h1>
+<div class='post-btn-container'><%= link_to "Post", new_user_post_path(@current_user, @current_user.id), class: 'post-button' %></div>
 <div>
   <% @users.each do |user| %>
     <%= render partial: "users/user", locals: { user: user } %>

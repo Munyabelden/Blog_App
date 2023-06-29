@@ -1,4 +1,8 @@
+require 'cancancan'
+
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @posts = Post.includes(:author).where(author_id: params[:user_id])
     @user = User.includes(:posts, :comments).find(params[:user_id])
@@ -20,6 +24,17 @@ class PostsController < ApplicationController
       redirect_to user_posts_path(current_user)
     else
       render :new
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+    if can? :destroy, @post
+      @post.destroy
+      redirect_to "/users/#{current_user.id}/posts", notice: 'Successfully deleted.'
+    else
+      redirect_to user_post_path(@post.author, @post), alert: 'Unauthorized action.'
     end
   end
 
