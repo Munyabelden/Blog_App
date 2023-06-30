@@ -14,9 +14,9 @@ Rails.application.routes.draw do
       resources :users, only: [] do
         get 'posts', on: :member
       end
-      resources :posts, only: [:index, :show] do
-        resources :comments, only: [:index, :create]
+      resources :posts, only: [:index, :show], defaults: { format: :json } do
+        resources :comments, only: [:index, :create], defaults: { format: :json }
       end
     end
-  end  
+  end
 end

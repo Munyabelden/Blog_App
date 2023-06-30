@@ -4,11 +4,17 @@ class Api::V1::PostsController < ApplicationController
   def index
     @posts = Post.includes(:author).where(author_id: params[:user_id])
     @user = User.includes(:posts, :comments).find(params[:user_id])
-    render json: { posts: @posts }
+    response do |format|
+      format.json do
+        render json: {
+          data: @posts.as_json(include: { author: { only: %i[id name] } })
+        }, status: :ok
+      end
+    end
   end
 
   def show
     @post = Post.find(params[:id])
-    render json: { post: @post }
+    render json: { data: @post }, status: :ok
   end
 end
