@@ -7,7 +7,7 @@ class Api::V1::PostsController < ApplicationController
     response do |format|
       format.json do
         render json: {
-          data: @posts.as_json(include: { author: { only: %i[id name] } })
+          post: @posts.as_json(include: { author: { only: %i[id name] } })
         }, status: :ok
       end
     end
@@ -15,6 +15,6 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    render json: { data: @post }, status: :ok
+    render json: { post: @post }, status: :ok
   end
 end
