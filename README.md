@@ -121,6 +121,11 @@ You can deploy this project using:
 - GitHub: [@githubhandle](https://github.com/Munyabelden/)
 - Twitter: [@twitterhandle](https://twitter.com/munyaradzi045)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/munyaradzi-mugauri-828a7b24a/)
+  
+👤 **Oscar Byiringiro**
+
+- GitHub: [@githuboscar](https://github.com/byiringiroscar)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/oscar-byiringiro-9baa8313a/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
