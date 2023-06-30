@@ -181,3 +181,7 @@ textarea {
 .short-button {
   width: fit-content;
 }
+
+h1 {
+  margin-left: 4%;
+}
